@@ -1,0 +1,19 @@
+{
+  "name": "udacity-project-travel-app",
+  "version": "1.0.0",
+  "description": "Final project for Udacity Front End Web Developer Nanodegree program.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProcureEminenceMB/Udacity-Project-Travel-App.git"
+  },
+  "author": "Michael Bigelow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ProcureEminenceMB/Udacity-Project-Travel-App/issues"
+  },
+  "homepage": "https://github.com/ProcureEminenceMB/Udacity-Project-Travel-App#readme"
+}
