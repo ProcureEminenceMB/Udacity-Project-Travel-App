@@ -24,5 +24,8 @@
     "express": "^4.17.1",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.10.3"
   }
 }
