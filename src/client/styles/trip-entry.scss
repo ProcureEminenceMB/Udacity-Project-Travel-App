@@ -1,0 +1,30 @@
+.tripEntry{
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+	width: 100%;
+	min-height: 200px;
+	height: auto;
+	background-color: #a4e5ff;
+}
+
+.tripLeftContent{
+	width: 40%;
+	padding: 24px;
+	//background-color: rgba( 255, 0, 0, 1 ); // Debug
+}
+
+.tripRightContent{
+	width: 60%;
+	padding: 24px;
+	//background-color: rgba( 0, 0, 255, 1 ); // Debug
+}
+
+.tripImageContainer{
+	width: 100%;
+	padding-top: 56.25%; // Forces 16:9 aspect ratio
+	background-image: url( "https://images.pexels.com/photos/731217/pexels-photo-731217.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" );
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
