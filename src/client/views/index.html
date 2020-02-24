@@ -3,14 +3,26 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>Travel App</title>
+		<title>Trip Organizer</title>
 		<meta name="description" content="Final project for the Udacity Front End Developer Nanodegree program.">
 		<meta name="author" content="Michael Bigelow">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 
 	<body>
-
+		<header>
+			<h1 id="appName">Trip Organizer</h1>
+		</header>
+		<main>
+			<div id="trips"></div>
+		</main>
+		<form id="tripForm">
+			<label>Destination: </label><input id="locationInput" name="locationInput" type="text" placeholder="Location" maxlength="10">
+			<br>
+			<label>Departure Date: </label><input id="dateInput" name="dateInput" type="text" placeholder="mm/dd/yyyy">
+			<br>
+			<button id="addTripButton">Add Trip</button>
+		</form>
 	</body>
 
 </html>
