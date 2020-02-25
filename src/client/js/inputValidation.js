@@ -2,7 +2,15 @@ const validDestination = ( destination ) => {
 
 	let valid = false;
 
-	// TODO: validation code
+	if( destination != '' ){
+
+		valid = true;
+
+	}else{
+
+		alert( 'Please add a valid destination.' );
+
+	}
 
 	return valid;
 
