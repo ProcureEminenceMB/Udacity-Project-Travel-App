@@ -1,7 +1,15 @@
 button{
 	cursor: pointer;
+	color: #646464;
+	&:hover{
+		color: inherit;
+	}
 }
 
 #tripForm{
 	padding: 24px;
+	text-align: center;
+	input:hover{
+		background-color: #99e677;
+	}
 }

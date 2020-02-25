@@ -1,7 +1,11 @@
+$info-padding: 18px;
+$section-padding: 24px;
+$small-font: .8em;
+
 .tripEntry{
 	display: flex;
-	flex: 1;
 	flex-direction: row;
+	flex-wrap: wrap;
 	width: 100%;
 	min-height: 200px;
 	height: auto;
@@ -9,15 +13,8 @@
 }
 
 .tripLeftContent{
-	width: 40%;
-	padding: 24px;
-	//background-color: rgba( 255, 0, 0, 1 ); // Debug
-}
-
-.tripRightContent{
-	width: 60%;
-	padding: 24px;
-	//background-color: rgba( 0, 0, 255, 1 ); // Debug
+	width: 50%;
+	padding: $section-padding;
 }
 
 .tripImageContainer{
@@ -27,4 +24,50 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+.tripRightContent{
+	width: 50%;
+	padding: $section-padding;
+}
+
+.tripflightInfo{
+	padding-top: $info-padding;
+	padding-right: $info-padding;
+}
+
+.flightInfoLabel{
+	position: relative;
+	float: left;
+	width: 50%;
+	font-weight: bold;
+}
+
+.flightInfo{
+	position: relative;
+	float: right;
+	width: 50%;
+	font-size: $small-font;
+	text-align: right;
+}
+
+.tripAddRemove{
+	padding-top: $info-padding;
+}
+
+.tripCountdown{
+	padding-top: $info-padding;
+}
+
+.tripWeather{
+	padding-top: $info-padding;
+}
+
+.tripWeatherDetails{
+	font-size: $small-font;
+}
+
+.tripNotesContainer{
+	width: 100%;
+	padding: $section-padding;
 }

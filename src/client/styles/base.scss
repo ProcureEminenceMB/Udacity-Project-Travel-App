@@ -1,10 +1,20 @@
 body{
-	width: 1100px;
+	width: 900px;
 	margin: auto;
 	font-family: Arial, Helvetica, sans-serif;
+	color: #394d55;
+}
+
+label{
+	font-weight: bold;
+	font-size: 1.5em;
 }
 
 #trips{
 	min-height: 60px;
 	width: 100%;
+}
+
+.clear{
+	clear: both;
 }
