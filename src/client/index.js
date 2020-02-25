@@ -1,7 +1,11 @@
 /* Import JS functions */
 import { validDestination, validDate } from './js/inputValidation';
-import { addTrip } from './js/travel-app';
+import { insertTripDisplay, addTrip, assignEvents } from './js/travel-app';
 
+// IIFE for event listener assignments.
+( () => {
+	document.addEventListener( 'DOMContentLoaded', assignEvents );
+})();
 
 /* Import SCSS styles */
 import './styles/reset.scss';
@@ -14,5 +18,6 @@ import './styles/form.scss';
 export {
 	validDestination,
 	validDate,
+	insertTripDisplay,
 	addTrip
 }
