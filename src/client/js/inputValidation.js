@@ -27,7 +27,7 @@ const validDate = ( date ) => {
 
 		// Create date object with user input.
 		const dateArray = date.split( '/' );
-		let requestDate = new Date( parseInt( dateArray[2] ), parseInt( dateArray[0] ), parseInt( dateArray[1] ) );
+		let requestDate = new Date( parseInt( dateArray[2] ), parseInt( dateArray[0] ) - 1, parseInt( dateArray[1] ) ); // Year, Month Index, Day. Month index = month - 1.
 
 		if( ( requestDate - currentDate ) > 0 ){
 
