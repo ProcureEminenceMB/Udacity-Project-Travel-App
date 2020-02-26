@@ -1,6 +1,6 @@
 /* Import JS functions */
 import { validDestination, validDate } from './js/inputValidation';
-import { insertTrip, getGeoCoords, getForecast, getImage, addTrip, addNotes, saveTrip, removeTrip, assignEvents } from './js/travel-app';
+import { calcNumDays, insertTrip, getGeoCoords, getForecast, getImage, addTrip, addNotes, saveTrip, removeTrip, assignEvents } from './js/travel-app';
 
 // IIFE for event listener assignments.
 ( () => {
@@ -18,6 +18,7 @@ import './styles/form.scss';
 export {
 	validDestination,
 	validDate,
+	calcNumDays,
 	insertTrip,
 	getGeoCoords,
 	getForecast,

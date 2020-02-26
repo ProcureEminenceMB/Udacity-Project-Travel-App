@@ -1,8 +1,7 @@
 import { validDestination, validDate } from './inputValidation';
 
-const insertTrip = ( tripInfo ) => {
+const calcNumDays = ( tripInfo ) => { // Calculate number of days before trip.
 
-	// Calculate number of days before trip.
 	const dateArray = tripInfo.date.split( '/' );
 	let tripDate = new Date( parseInt( dateArray[2] ), parseInt( dateArray[0] ) - 1, parseInt( dateArray[1] ) ); // Year, Month Index, Day. Month index = month - 1.
 	let currentDate = new Date();
@@ -11,6 +10,14 @@ const insertTrip = ( tripInfo ) => {
 	const numMinutes = Math.floor( numSeconds / 60 );
 	const numHours = Math.floor( numMinutes / 60 );
 	const numDays = Math.floor( numHours / 24 );
+
+	return numDays;
+
+};
+
+const insertTrip = ( tripInfo ) => {
+
+	const numDays = calcNumDays( tripInfo );
 
 	let tripDisplay = `
 		<div class="tripEntry">
@@ -236,6 +243,7 @@ const assignEvents = () => {
 };
 
 export {
+	calcNumDays,
 	insertTrip,
 	getGeoCoords,
 	getForecast,
