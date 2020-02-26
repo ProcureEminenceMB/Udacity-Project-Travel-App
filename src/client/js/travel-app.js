@@ -86,7 +86,7 @@ const insertTrip = ( tripInfo ) => {
 	latestEntry.querySelector( '.trip-image-container' ).style.backgroundImage = `url(${tripInfo.image})`;
 
 	// Show notes if they exist.
-	if( tripInfo.notes != '' ){
+	if( tripInfo.notes != '' ) {
 
 		document.querySelectorAll( '.notes' )[entryIndex].value = tripInfo.notes;
 		addNotes( entryIndex );
@@ -244,7 +244,7 @@ const saveTrip = ( tripInfo ) => {
 
 	try{
 
-		if( localStorage.getItem( 'trips' ) == null ){ // Add 'trips' entry in localStorage if it doesn't exist.
+		if( localStorage.getItem( 'trips' ) == null ) { // Add 'trips' entry in localStorage if it doesn't exist.
 
 			let tripsArray = [tripInfo];
 			localStorage.setItem( 'trips', JSON.stringify( tripsArray ) );
@@ -295,11 +295,11 @@ const loadTrips = () => {
 
 	try{
 
-		if( localStorage.getItem( 'trips' ) != null ){
+		if( localStorage.getItem( 'trips' ) != null ) {
 
 			let tripsArray = JSON.parse( localStorage.getItem( 'trips' ) );
 
-			for( let trip of tripsArray ){
+			for( let trip of tripsArray ) {
 
 				insertTrip( trip );
 
@@ -316,7 +316,7 @@ const removeTrip = ( index ) => {
 	// Remove trip
 	try{
 
-		if( localStorage.getItem( 'trips' ) != null ){
+		if( localStorage.getItem( 'trips' ) != null ) {
 
 			let tripsArray = JSON.parse( localStorage.getItem( 'trips' ) );
 			tripsArray.splice( index, 1 );

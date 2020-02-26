@@ -114,7 +114,7 @@ app.post( '/image', async ( request, response ) => {
 	let res = await fetch( localURL );
 	let json = await res.json();
 
-	if( json.hits.length > 0 ){
+	if( json.hits.length > 0 ) {
 
 		response.send( json );
 
