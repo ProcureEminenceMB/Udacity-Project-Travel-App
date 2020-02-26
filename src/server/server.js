@@ -19,6 +19,13 @@ app.use( cors() );
 const Geonames = require( 'geonames.js' );
 const DarkSky = require( 'dark-sky' );
 
+// Initialize API libraries
+const geonames = new Geonames( {
+	username: process.env.GEONAMES_API_USERNAME,
+	lang: 'en',
+	encoding: 'JSON'
+});
+
 // Setup server port and apply listener
 const port = 8080;
 app.listen( port, () => {
@@ -31,5 +38,35 @@ app.listen( port, () => {
 app.get( '/', ( request, response ) => {
 
 	response.sendFile( 'dist/index.html' );
+
+});
+
+// Setup route for getting weather forcast.
+app.post( '/geo-coords', ( request, response ) => {
+
+	geonames.search( { 'q': request.body.destination } )
+	.then( geonamesResponse => {
+
+		const data = {
+			'countryName': geonamesResponse.geonames[0].countryName,
+			'longitude': geonamesResponse.geonames[0].lng,
+			'latitude': geonamesResponse.geonames[0].lat,
+			'error': ""
+		}
+
+		response.send( data );
+	})
+	.catch(
+		( error ) => {
+			
+			const data = {
+				'countryName': '',
+				'longitude': '',
+				'latitude': '',
+				'error': error
+			}
+			response.send( data );
+		}
+	);
 
 });
