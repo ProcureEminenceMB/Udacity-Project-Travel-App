@@ -7,6 +7,7 @@ const path = require( 'path' );
 const express = require( 'express' );
 const bodyParser = require( 'body-parser' );
 const cors = require( 'cors' );
+const fetch = require( 'node-fetch' );
 
 // Create instance of the express server and apply settings
 const app = express();
