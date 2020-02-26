@@ -4,7 +4,7 @@
   "description": "Final project for Udacity Front End Web Developer Nanodegree program.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "webpack --config webpack.dev.js",
     "front-end-dev": "webpack-dev-server --config webpack.dev.js --open",
@@ -38,6 +38,7 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
+    "jest": "^25.1.0",
     "webpack-dev-server": "^3.10.3"
   }
 }
