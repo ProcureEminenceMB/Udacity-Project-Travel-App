@@ -27,6 +27,8 @@ const geonames = new Geonames( {
 	encoding: 'JSON'
 });
 
+const darksky = new DarkSky( process.env.DARK_SKY_API_KEY );
+
 // Setup server port and apply listener
 const port = 8080;
 app.listen( port, () => {
@@ -49,7 +51,7 @@ app.post( '/geo-coords', ( request, response ) => {
 	.then( geonamesResponse => {
 
 		const data = {
-			'countryName': geonamesResponse.geonames[0].countryName,
+			'country': geonamesResponse.geonames[0].countryName,
 			'longitude': geonamesResponse.geonames[0].lng,
 			'latitude': geonamesResponse.geonames[0].lat,
 			'error': ""
@@ -61,7 +63,7 @@ app.post( '/geo-coords', ( request, response ) => {
 		( error ) => {
 			
 			const data = {
-				'countryName': '',
+				'country': '',
 				'longitude': '',
 				'latitude': '',
 				'error': error
@@ -70,4 +72,58 @@ app.post( '/geo-coords', ( request, response ) => {
 		}
 	);
 
+});
+
+// Setup route for getting forcast information.
+app.post( '/forecast', ( request, response ) => {
+
+	// Format date.
+	const dateArray = request.body.date.split( '/' );
+	const date = `${dateArray[2]}-${dateArray[0]}-${dateArray[1]}`; // yyyy-mm-dd
+
+	darksky
+		.options({
+			latitude: request.body.latitude,
+			longitude: request.body.longitude,
+			time: date,
+			language: 'en',
+			exclude: ['minutely', 'daily']
+		})
+		.get()
+		.then( ( res ) => {
+
+			response.send( res );
+
+		})
+		.catch( ( error ) => {
+
+			response.send( error );
+
+		});
+
+});
+
+// Setup route for getting image path based on location.
+app.post( '/image', async ( request, response ) => {
+
+	const localURL = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent( request.body.destination )}`;
+	const countryURL = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent( request.body.country )}`;
+
+	let res = await fetch( localURL );
+	let json = await res.json();
+
+	if( json.hits.length > 0 ){
+
+		console.log( 'first json: ' + json.hits[0].webformatURL );
+		response.send( json );
+
+	}else{
+
+		res = await fetch( countryURL );
+		json = await res.json();
+		console.log( 'second json: ' + json.hits[0].webformatURL );
+		response.send( json );
+
+	}
+	
 });
