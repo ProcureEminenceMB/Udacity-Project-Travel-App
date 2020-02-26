@@ -15,6 +15,10 @@ app.use( bodyParser.urlencoded({ extended: false }) );
 app.use( bodyParser.json() );
 app.use( cors() );
 
+// Import API libraries
+const Geonames = require( 'geonames.js' );
+const DarkSky = require( 'dark-sky' );
+
 // Setup server port and apply listener
 const port = 8080;
 app.listen( port, () => {
