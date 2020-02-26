@@ -9,7 +9,9 @@ $small-font: .8em;
 	width: 100%;
 	min-height: 200px;
 	height: auto;
-	background-color: #a4e5ff;
+	background-color: #f9fafc;
+	border: 1px dashed #bbb;
+	border-bottom: none;
 }
 
 .tripLeftContent{
@@ -59,6 +61,10 @@ $small-font: .8em;
 	padding-top: $info-padding;
 }
 
+.tripCountdownNum{
+	text-decoration: underline;
+}
+
 .tripWeather{
 	padding-top: $info-padding;
 }
@@ -67,8 +73,25 @@ $small-font: .8em;
 	font-size: $small-font;
 }
 
-.tripNotesContainer{
-	display: none;
+.tripBottomContainer{
 	width: 50%;
 	padding: $section-padding;
+}
+
+.tripNotesContainer{
+	display: none;
+	width: 100%;
+	padding-top: $info-padding;
+}
+
+@media( max-width: 890px ){
+	body{
+		width: auto;
+	}
+	.tripEntry{
+		flex-direction: column;
+	}
+	.tripLeftContent, .tripRightContent{
+		width: 100%;
+	}
 }
