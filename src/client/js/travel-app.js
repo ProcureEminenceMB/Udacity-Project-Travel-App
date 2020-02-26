@@ -18,6 +18,14 @@ const calcNumDays = ( tripInfo ) => { // Calculate number of days before trip.
 const insertTrip = ( tripInfo ) => {
 
 	const numDays = calcNumDays( tripInfo );
+	let tripTitle = tripInfo.destination;
+	let destCity = tripInfo.destination.split( ',' )[0];
+
+	if( !tripTitle.match( tripInfo.country ) ){ // Append country text if user didn't specify.
+
+		tripTitle += `, ${tripInfo.country}`;
+
+	}
 
 	let tripDisplay = `
 		<div class="tripEntry">
@@ -28,7 +36,7 @@ const insertTrip = ( tripInfo ) => {
 			</div>
 			<div class="tripRightContent">
 				<div class="tripHeader">
-					<h2>My Trip to: <span class="tripLocation">${tripInfo.destination}</span>
+					<h2>My Trip to: <span class="tripLocation">${tripTitle}</span>
 					<br>
 					Departing: <span class="tripDate">${tripInfo.date}</span></h2>
 				</div>
@@ -47,7 +55,7 @@ const insertTrip = ( tripInfo ) => {
 					<button class="saveTripButton squareButton">save trip</button> <button class="removeTripButton squareButton">remove trip</button>
 				</div>
 				<div class="tripCountdown">
-					<span class="tripLocation">${tripInfo.destination}</span> is <span class="tripCountdownNum">${numDays}</span> days away.
+					<span class="tripLocation">${destCity}</span> is <span class="tripCountdownNum">${numDays}</span> days away.
 				</div>
 				<div class="tripWeather">
 					Typical weather for then is:
