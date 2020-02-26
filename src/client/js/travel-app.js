@@ -98,9 +98,34 @@ const getGeoCoords = async ( tripInfo ) => {
 
 };
 
-const getForecast = async () => {
+const getForecast = async ( tripInfo ) => {
 
-	// 
+	const response = await fetch( '/forecast', {
+			method: 'POST',
+			credentials: 'same-origin',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify( {
+				'latitude': tripInfo.latitude,
+				'longitude': tripInfo.longitude,
+				'date': tripInfo.date
+			})
+		});
+
+	try{
+
+		const data = await response.json();
+
+		tripInfo.forecast = data.hourly.summary;
+
+		return tripInfo;
+
+	}catch( error ){
+
+		console.log( error );
+		
+	}
 
 };
 
