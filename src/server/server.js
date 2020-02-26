@@ -114,14 +114,13 @@ app.post( '/image', async ( request, response ) => {
 
 	if( json.hits.length > 0 ){
 
-		console.log( 'first json: ' + json.hits[0].webformatURL );
 		response.send( json );
 
 	}else{
 
 		res = await fetch( countryURL );
 		json = await res.json();
-		console.log( 'second json: ' + json.hits[0].webformatURL );
+
 		response.send( json );
 
 	}

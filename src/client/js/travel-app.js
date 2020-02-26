@@ -212,7 +212,6 @@ const addTrip = ( event ) => {
 
 const addNotes = ( index ) => {
 
-	console.log( `addNotes(${index})` );
 
 };
 
