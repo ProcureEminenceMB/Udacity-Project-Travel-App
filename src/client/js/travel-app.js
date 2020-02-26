@@ -64,7 +64,7 @@ const insertTrip = ( tripInfo ) => {
 				</div>
 			</div>
 			<div class="tripBottomContainer">
-				<button class="tripAddNotesButton roundedButton">Add Notes</button>
+				<button class="tripAddNotesButton roundedButton"><span class="bold">+</span> Add Notes</button>
 				<div class="tripNotesContainer">
 					Notes<br>
 					<textarea class="notes"></textarea>
