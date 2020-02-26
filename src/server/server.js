@@ -30,7 +30,7 @@ const geonames = new Geonames( {
 const port = 8080;
 app.listen( port, () => {
 
-	console.log( `NLP app is listening on port ${port}.` );
+	console.log( `Travel app is listening on port ${port}.` );
 
 });
 
@@ -41,7 +41,7 @@ app.get( '/', ( request, response ) => {
 
 });
 
-// Setup route for getting weather forcast.
+// Setup route for getting geographic coordinates.
 app.post( '/geo-coords', ( request, response ) => {
 
 	geonames.search( { 'q': request.body.destination } )
