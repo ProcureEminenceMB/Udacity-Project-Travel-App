@@ -100,8 +100,8 @@ app.post( '/forecast', ( request, response ) => {
 // Setup route for getting image path based on location.
 app.post( '/image', async ( request, response ) => {
 
-	const localURL = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent( request.body.destination )}`;
-	const countryURL = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent( request.body.country )}`;
+	const localURL = createPixabayURL( process.env.PIXABAY_API_KEY, request.body.destination );
+	const countryURL = createPixabayURL( process.env.PIXABAY_API_KEY, request.body.country );
 
 	let res = await fetch( localURL );
 	let json = await res.json();
@@ -119,4 +119,9 @@ app.post( '/image', async ( request, response ) => {
 
 	}
 	
-});
+});const createPixabayURL = ( key, query ) => {
+
+	return `https://pixabay.com/api/?key=${key}&q=${encodeURIComponent( query )}`;
+
+}
+
