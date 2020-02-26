@@ -31,14 +31,6 @@ const darksky = new DarkSky( process.env.DARK_SKY_API_KEY );
 
 let tripData = {};
 
-// Setup server port and apply listener
-const port = 8080;
-app.listen( port, () => {
-
-	console.log( `Travel app is listening on port ${port}.` );
-
-});
-
 // Setup default route for app
 app.get( '/', ( request, response ) => {
 
