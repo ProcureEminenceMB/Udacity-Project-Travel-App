@@ -119,9 +119,22 @@ app.post( '/image', async ( request, response ) => {
 
 	}
 	
-});const createPixabayURL = ( key, query ) => {
+});
+
+// Setup test route
+app.get( '/image-url-test', async ( request, response ) => {
+
+	let res = await fetch( createPixabayURL( process.env.PIXABAY_API_KEY, 'New York' ) );
+	let json = await res.json();
+
+	response.send( { 'url': json.hits[0].webformatURL } );
+
+});
+
+const createPixabayURL = ( key, query ) => {
 
 	return `https://pixabay.com/api/?key=${key}&q=${encodeURIComponent( query )}`;
 
 }
 
+module.exports = app;
