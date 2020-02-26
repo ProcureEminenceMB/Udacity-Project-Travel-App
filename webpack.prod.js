@@ -1,0 +1,42 @@
+const path = require( 'path' );
+const webpack = require( 'webpack' );
+const HtmlWebPackPlugin = require( 'html-webpack-plugin' );
+const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+
+module.exports = {
+
+	entry: './src/client/index.js',
+	mode: 'production',
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: [
+					/node_modules/,
+					/jest/
+				]
+			},
+			{
+				test: /\.scss$/,
+				use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+			}
+		]
+	},
+	plugins: [
+		new HtmlWebPackPlugin({
+			template: './src/client/views/index.html',
+			filename: './index.html'
+		}),
+		new CleanWebpackPlugin({
+			dry: false, // Simulate removal of files. Default is false.
+			verbose: false, // Write logs to console. Default is false.
+			cleanStaleWebpackAssets: true, // Remove unused webpack assets on rebuild. Default is true.
+			protectWebpackAssets: false // Prevent removal of current webpack assets. Default is true.
+		})
+	],
+	output: {
+		libraryTarget: 'var',
+		library: 'TravelApp'
+	}
+
+};
