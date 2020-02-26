@@ -210,19 +210,19 @@ const addTrip = ( event ) => {
 		'notes': ''
 	}
 
-	getGeoCoords( tripInfo )
+	getGeoCoords( tripInfo ) // Get longitude, latitude, and country data.
 		.then( ( tripInfo ) => {
 
-			return getForecast( tripInfo );
+			return getForecast( tripInfo ); // Get forecast data.
 
 		}).then( ( tripInfo ) => {
 
-			return getImage( tripInfo );
+			return getImage( tripInfo ); // Get image data.
 
 		})
 		.then( ( tripInfo ) => {
 
-			insertTrip( tripInfo );
+			insertTrip( tripInfo ); // Add trip to app display.
 			saveTrip( tripInfo ); // Add trip to localStorage.
 
 		})
