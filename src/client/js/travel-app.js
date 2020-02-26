@@ -70,11 +70,19 @@ const insertTrip = ( tripInfo ) => {
 	const entryIndex = tripEntries.length - 1;
 	const latestEntry = tripEntries[ entryIndex ];
 	latestEntry.querySelector( '.tripAddNotesButton' ).addEventListener( 'click', () => { TravelApp.addNotes( entryIndex ); } );
-	latestEntry.querySelector( '.saveTripButton' ).addEventListener( 'click', () => { TravelApp.saveTrip( entryIndex ); } );
+	latestEntry.querySelector( '.saveTripButton' ).addEventListener( 'click', () => { TravelApp.updateTrip( entryIndex ); } );
 	latestEntry.querySelector( '.removeTripButton' ).addEventListener( 'click', () => { TravelApp.removeTrip( entryIndex ); } );
 
 	// Set image url.
 	latestEntry.querySelector( '.tripImageContainer' ).style.backgroundImage = `url(${tripInfo.image})`;
+
+	// Show notes if they exist.
+	if( tripInfo.notes != '' ){
+
+		document.querySelectorAll( '.notes' )[entryIndex].value = tripInfo.notes;
+		addNotes( entryIndex );
+
+	}
 
 };
 
@@ -189,7 +197,8 @@ const addTrip = ( event ) => {
 		'country': '',
 		'latitude': '',
 		'longitude': '',
-		'forecast': ''
+		'forecast': '',
+		'notes': ''
 	}
 
 	getGeoCoords( tripInfo )
@@ -205,9 +214,7 @@ const addTrip = ( event ) => {
 		.then( ( tripInfo ) => {
 
 			insertTrip( tripInfo );
-
-			// TODO - Add trip to localStorage.
-			//saveTrip( index );
+			saveTrip( tripInfo ); // Add trip to localStorage.
 
 		})
 		.catch( ( error ) => {
@@ -224,21 +231,102 @@ const addNotes = ( index ) => {
 
 };
 
-const saveTrip = ( index ) => {
+const saveTrip = ( tripInfo ) => {
 
-	console.log( `saveTrip(${index})` );
+	try{
+
+		if( localStorage.getItem( 'trips' ) == null ){ // Add 'trips' entry in localStorage if it doesn't exist.
+
+			let tripsArray = [tripInfo];
+			localStorage.setItem( 'trips', JSON.stringify( tripsArray ) );
+
+		}else{ // Update the 'trips' entry in localStorage.
+			
+			let tripsArray = JSON.parse( localStorage.getItem( 'trips' ) );
+			tripsArray.push( tripInfo );
+			localStorage.setItem( 'trips', JSON.stringify( tripsArray ) );
+
+		}
+
+	}catch( error ){
+
+		alert( 'Error: Your local storage is disabled and will prevent this app from functioning properly.' );
+
+	}
+
+};
+
+const updateTrip = ( index ) => {
+
+	try{
+
+		if( localStorage.getItem( 'trips' ) == null ){ // Skip if 'trips' doesn't exist in localStorage.
+
+			alert( 'Trip could not be saved.' );
+
+		}else{ // Update the 'trips' entry in localStorage.
+			
+			let tripsArray = JSON.parse( localStorage.getItem( 'trips' ) );
+			tripsArray[index].notes = document.querySelectorAll( '.notes' )[index].value;
+			localStorage.setItem( 'trips', JSON.stringify( tripsArray ) );
+			alert( 'Trip saved' );
+
+		}
+
+	}catch( error ){
+
+		console.log( error );
+		alert( 'Error: Your local storage is disabled.' );
+
+	}
+
+};
+
+const loadTrips = () => {
+
+	try{
+
+		if( localStorage.getItem( 'trips' ) != null ){
+
+			let tripsArray = JSON.parse( localStorage.getItem( 'trips' ) );
+
+			for( let trip of tripsArray ){
+
+				insertTrip( trip );
+
+			}
+
+		}
+
+	}catch( error ){ console.log( error ) }
 
 };
 
 const removeTrip = ( index ) => {
 
-	console.log( `removeTrip(${index})` );
+	// Remove trip
+	try{
+
+		if( localStorage.getItem( 'trips' ) != null ){
+
+			let tripsArray = JSON.parse( localStorage.getItem( 'trips' ) );
+			tripsArray.splice( index, 1 );
+			localStorage.setItem( 'trips', JSON.stringify( tripsArray ) );
+
+		}
+
+	}catch( error ){}
+
+	document.querySelector( '#trips').innerHTML = "";
+	loadTrips(); // Reload all remaining trips to update indexing.
 
 };
 
-const assignEvents = () => {
+const init = () => {
 
 	document.querySelector( '#tripForm' ).addEventListener( 'submit', addTrip );
+
+	loadTrips(); // Load all trips that are saved in localStorage.
 
 };
 
@@ -251,6 +339,8 @@ export {
 	addTrip,
 	addNotes,
 	saveTrip,
+	updateTrip,
+	loadTrips,
 	removeTrip,
-	assignEvents
+	init
 };

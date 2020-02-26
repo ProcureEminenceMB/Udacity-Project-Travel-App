@@ -1,10 +1,10 @@
 /* Import JS functions */
 import { validDestination, validDate } from './js/inputValidation';
-import { calcNumDays, insertTrip, getGeoCoords, getForecast, getImage, addTrip, addNotes, saveTrip, removeTrip, assignEvents } from './js/travel-app';
+import { calcNumDays, insertTrip, getGeoCoords, getForecast, getImage, addTrip, addNotes, saveTrip, updateTrip, loadTrips, removeTrip, init } from './js/travel-app';
 
-// IIFE for event listener assignments.
+// IIFE for all code that needs to run as soon as the page loads.
 ( () => {
-	document.addEventListener( 'DOMContentLoaded', assignEvents );
+	document.addEventListener( 'DOMContentLoaded', init );
 })();
 
 /* Import SCSS styles */
@@ -26,5 +26,7 @@ export {
 	addTrip,
 	addNotes,
 	saveTrip,
+	updateTrip,
+	loadTrips,
 	removeTrip
 }
