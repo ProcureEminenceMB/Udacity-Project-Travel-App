@@ -31,8 +31,6 @@ const insertTrip = ( tripInfo ) => {
 		<div class="tripEntry">
 			<div class="tripLeftContent">
 				<div class="tripImageContainer"></div>
-				<br>
-				<button class="tripAddNotesButton roundedButton">Add Notes</button>
 			</div>
 			<div class="tripRightContent">
 				<div class="tripHeader">
@@ -52,7 +50,7 @@ const insertTrip = ( tripInfo ) => {
 					<div class="clear"></div>
 				</div>
 				<div class="tripAddRemove">
-					<button class="saveTripButton squareButton">save trip</button> <button class="removeTripButton squareButton">remove trip</button>
+					<button class="saveTripButton squareButton">Save Trip</button> <button class="removeTripButton squareButton">Remove Trip</button>
 				</div>
 				<div class="tripCountdown">
 					<span class="tripLocation">${destCity}</span> is <span class="tripCountdownNum">${numDays}</span> days away.
@@ -65,9 +63,12 @@ const insertTrip = ( tripInfo ) => {
 					</div>
 				</div>
 			</div>
-			<div class="tripNotesContainer">
-				Notes<br>
-				<textarea class="notes"></textarea>
+			<div class="tripBottomContainer">
+				<button class="tripAddNotesButton roundedButton">Add Notes</button>
+				<div class="tripNotesContainer">
+					Notes<br>
+					<textarea class="notes"></textarea>
+				</div>
 			</div>
 		</div>`;
 
