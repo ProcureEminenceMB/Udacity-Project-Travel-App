@@ -1,6 +1,6 @@
 /* Import JS functions */
 import { validDestination, validDate } from './js/inputValidation';
-import { insertTrip, addTrip, addNotes, saveTrip, removeTrip, assignEvents } from './js/travel-app';
+import { insertTrip, getGeoCoords, getForecast, getImage, addTrip, addNotes, saveTrip, removeTrip, assignEvents } from './js/travel-app';
 
 // IIFE for event listener assignments.
 ( () => {
@@ -19,6 +19,9 @@ export {
 	validDestination,
 	validDate,
 	insertTrip,
+	getGeoCoords,
+	getForecast,
+	getImage,
 	addTrip,
 	addNotes,
 	saveTrip,
