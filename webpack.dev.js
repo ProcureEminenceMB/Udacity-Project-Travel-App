@@ -16,7 +16,8 @@ module.exports = {
 				exclude: [
 					/node_modules/,
 					/jest/
-				]
+				],
+				loader: 'babel-loader'
 			},
 			{
 				test: /\.scss$/,
