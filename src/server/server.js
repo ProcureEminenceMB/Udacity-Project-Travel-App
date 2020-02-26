@@ -29,6 +29,8 @@ const geonames = new Geonames( {
 
 const darksky = new DarkSky( process.env.DARK_SKY_API_KEY );
 
+let tripData = {};
+
 // Setup server port and apply listener
 const port = 8080;
 app.listen( port, () => {
@@ -50,25 +52,25 @@ app.post( '/geo-coords', ( request, response ) => {
 	geonames.search( { 'q': request.body.destination } )
 	.then( geonamesResponse => {
 
-		const data = {
+		tripData = {
 			'country': geonamesResponse.geonames[0].countryName,
 			'longitude': geonamesResponse.geonames[0].lng,
 			'latitude': geonamesResponse.geonames[0].lat,
 			'error': ""
 		}
 
-		response.send( data );
+		response.send( tripData );
 	})
 	.catch(
 		( error ) => {
 			
-			const data = {
+			tripData = {
 				'country': '',
 				'longitude': '',
 				'latitude': '',
 				'error': error
 			}
-			response.send( data );
+			response.send( tripData );
 		}
 	);
 
