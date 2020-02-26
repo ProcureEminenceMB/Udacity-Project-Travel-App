@@ -15,10 +15,12 @@
 		</header>
 		<main id="trips"></main>
 		<form id="tripForm">
-			<label>Destination: </label><input id="locationInput" name="locationInput" type="text" placeholder="Location">
-			<br>
-			<label>Departure Date: </label><input id="dateInput" name="dateInput" type="text" placeholder="mm/dd/yyyy" maxlength="10">
-			<br>
+			<div id="locationInputContainer">
+				<label>Destination: </label><input id="locationInput" name="locationInput" type="text" placeholder="Location">
+			</div>
+			<div id="dateInputContainer">
+				<label>Departure Date: </label><input id="dateInput" name="dateInput" type="text" placeholder="mm/dd/yyyy" maxlength="10">
+			</div>
 			<button id="addTripButton squareButton">Add Trip</button>
 		</form>
 	</body>
