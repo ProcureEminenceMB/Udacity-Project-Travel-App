@@ -67,9 +67,34 @@ const insertTrip = ( tripInfo ) => {
 
 };
 
-const getGeoCoords = async () => {
+const getGeoCoords = async ( tripInfo ) => {
 
-	// 
+	const response = await fetch( '/geo-coords', {
+			method: 'POST',
+			credentials: 'same-origin',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify( {
+				'destination': tripInfo.destination,
+				'date': tripInfo.date
+			})
+		});
+
+	try{
+
+		const data = await response.json();
+		tripInfo.latitude = data.latitude;
+		tripInfo.longitude = data.longitude;
+		tripInfo.country = data.country;
+
+		return tripInfo;
+
+	}catch( error ){
+
+		console.log( error );
+
+	}
 
 };
 
