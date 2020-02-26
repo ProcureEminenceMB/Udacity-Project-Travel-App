@@ -67,6 +67,24 @@ const insertTrip = ( tripInfo ) => {
 
 };
 
+const getGeoCoords = async () => {
+
+	// 
+
+};
+
+const getForecast = async () => {
+
+	// 
+
+};
+
+const getImage = async () => {
+
+	// 
+
+};
+
 const addTrip = ( event ) => {
 
 	event.preventDefault(); // Prevent page refresh caused by form submission.
@@ -120,6 +138,9 @@ const assignEvents = () => {
 
 export {
 	insertTrip,
+	getGeoCoords,
+	getForecast,
+	getImage,
 	addTrip,
 	addNotes,
 	saveTrip,
