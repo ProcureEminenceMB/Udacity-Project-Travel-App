@@ -15,4 +15,4 @@ The following tasks will be completed in this project:
 - app.js must implement at least 3 API's and primary function should be exported to index.js.
 - Comments are used throughout the code when necessary.
 - JavaScript must follow the [Udacity JavaScript Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html).
-- Use Local Storage to save user data.
+- Use Local Storage to save user data. (Extended Project Option)
