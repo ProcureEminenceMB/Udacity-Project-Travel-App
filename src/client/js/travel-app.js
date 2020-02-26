@@ -28,44 +28,44 @@ const insertTrip = ( tripInfo ) => {
 	}
 
 	let tripDisplay = `
-		<div class="tripEntry">
-			<div class="tripLeftContent">
-				<div class="tripImageContainer"></div>
+		<div class="trip-entry">
+			<div class="trip-left-content">
+				<div class="trip-image-container"></div>
 			</div>
-			<div class="tripRightContent">
-				<div class="tripHeader">
-					<h2>My Trip to: <span class="tripLocation">${tripTitle}</span>
+			<div class="trip-right-content">
+				<div class="trip-header">
+					<h2>My Trip to: <span class="trip-location">${tripTitle}</span>
 					<br>
-					Departing: <span class="tripDate">${tripInfo.date}</span></h2>
+					Departing: <span class="trip-date">${tripInfo.date}</span></h2>
 				</div>
-				<div class="tripflightInfo">
-					<div class="flightInfoLabel">
+				<div class="trip-flight-info">
+					<div class="flight-info-label">
 						Flight info:
 					</div>
-					<div class="flightInfo">
+					<div class="flight-info">
 						DIA 4:35PM
 						<br>
 						Flight 587 United Airlines
 					</div>
 					<div class="clear"></div>
 				</div>
-				<div class="tripAddRemove">
-					<button class="saveTripButton squareButton">Save Trip</button> <button class="removeTripButton squareButton">Remove Trip</button>
+				<div class="trip-add-remove">
+					<button class="save-trip-button square-button">Save Trip</button> <button class="remove-trip-button square-button">Remove Trip</button>
 				</div>
-				<div class="tripCountdown">
-					<span class="tripLocation">${destCity}</span> is <span class="tripCountdownNum">${numDays}</span> days away.
+				<div class="trip-countdown">
+					<span class="trip-location">${destCity}</span> is <span class="trip-countdown-num">${numDays}</span> days away.
 				</div>
-				<div class="tripWeather">
+				<div class="trip-weather">
 					Typical weather for then is:
 					<br>
-					<div class="tripWeatherDetails">
+					<div class="trip-weather-details">
 						${tripInfo.forecast}
 					</div>
 				</div>
 			</div>
-			<div class="tripBottomContainer">
-				<button class="tripAddNotesButton roundedButton"><span class="bold">+</span> Add Notes</button>
-				<div class="tripNotesContainer">
+			<div class="trip-bottom-container">
+				<button class="trip-add-notes-button rounded-button"><span class="bold">+</span> Add Notes</button>
+				<div class="trip-notes-container">
 					Notes<br>
 					<textarea class="notes"></textarea>
 				</div>
@@ -75,15 +75,15 @@ const insertTrip = ( tripInfo ) => {
 	document.querySelector( '#trips').insertAdjacentHTML( 'beforeend', tripDisplay );
 
 	// Assign event listeners to the new trip buttons.
-	let tripEntries = document.querySelectorAll( '.tripEntry' );
+	let tripEntries = document.querySelectorAll( '.trip-entry' );
 	const entryIndex = tripEntries.length - 1;
 	const latestEntry = tripEntries[ entryIndex ];
-	latestEntry.querySelector( '.tripAddNotesButton' ).addEventListener( 'click', () => { TravelApp.addNotes( entryIndex ); } );
-	latestEntry.querySelector( '.saveTripButton' ).addEventListener( 'click', () => { TravelApp.updateTrip( entryIndex ); } );
-	latestEntry.querySelector( '.removeTripButton' ).addEventListener( 'click', () => { TravelApp.removeTrip( entryIndex ); } );
+	latestEntry.querySelector( '.trip-add-notes-button' ).addEventListener( 'click', () => { TravelApp.addNotes( entryIndex ); } );
+	latestEntry.querySelector( '.save-trip-button' ).addEventListener( 'click', () => { TravelApp.updateTrip( entryIndex ); } );
+	latestEntry.querySelector( '.remove-trip-button' ).addEventListener( 'click', () => { TravelApp.removeTrip( entryIndex ); } );
 
 	// Set image url.
-	latestEntry.querySelector( '.tripImageContainer' ).style.backgroundImage = `url(${tripInfo.image})`;
+	latestEntry.querySelector( '.trip-image-container' ).style.backgroundImage = `url(${tripInfo.image})`;
 
 	// Show notes if they exist.
 	if( tripInfo.notes != '' ){
@@ -236,7 +236,7 @@ const addTrip = ( event ) => {
 
 const addNotes = ( index ) => {
 
-	document.querySelectorAll( '.tripNotesContainer' )[index].style.display = 'block';
+	document.querySelectorAll( '.trip-notes-container' )[index].style.display = 'block';
 
 };
 
@@ -333,7 +333,7 @@ const removeTrip = ( index ) => {
 
 const init = () => {
 
-	document.querySelector( '#tripForm' ).addEventListener( 'submit', addTrip );
+	document.querySelector( '#trip-form' ).addEventListener( 'submit', addTrip );
 
 	loadTrips(); // Load all trips that are saved in localStorage.
 
