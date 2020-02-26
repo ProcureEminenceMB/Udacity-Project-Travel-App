@@ -46,7 +46,7 @@ const insertTrip = ( tripInfo ) => {
 					Typical weather for then is:
 					<br>
 					<div class="tripWeatherDetails">
-						${tripInfo.weather}
+						${tripInfo.forecast}
 					</div>
 				</div>
 			</div>
@@ -64,6 +64,9 @@ const insertTrip = ( tripInfo ) => {
 	latestEntry.querySelector( '.tripAddNotesButton' ).addEventListener( 'click', () => { TravelApp.addNotes( entryIndex ); } );
 	latestEntry.querySelector( '.saveTripButton' ).addEventListener( 'click', () => { TravelApp.saveTrip( entryIndex ); } );
 	latestEntry.querySelector( '.removeTripButton' ).addEventListener( 'click', () => { TravelApp.removeTrip( entryIndex ); } );
+
+	// Set image url.
+	latestEntry.querySelector( '.tripImageContainer' ).style.backgroundImage = `url(${tripInfo.image})`;
 
 };
 
@@ -166,23 +169,44 @@ const addTrip = ( event ) => {
 	const destInput = event.target[0].value; // Destination input.
 	const dateInput = event.target[1].value; // Date input.
 
-	if( !validDestination( destInput ) || !validDate( dateInput ) ) { return };
+	if( !validDestination( destInput ) || !validDate( dateInput ) ) {
+
+		return
+
+	};
 	
-	// TODO - Send request to the server.
-		// TODO - Report errors if they exist.
+	const tripInfo = {
+		'destination': destInput,
+		'date': dateInput,
+		'country': '',
+		'latitude': '',
+		'longitude': '',
+		'forecast': ''
+	}
 
-		// Add trip to app display.
-		let tripInfo = { // Debug
-			'destination': destInput,
-			'date': dateInput,
-			'weather': `High of 46C, Low of 32C
-				<br>
-				Sunny throughout the day.`
-		}
-		insertTrip( tripInfo );
+	getGeoCoords( tripInfo )
+		.then( ( tripInfo ) => {
 
-		// TODO - Add trip to localStorage.
-		//saveTrip( index );
+			return getForecast( tripInfo );
+
+		}).then( ( tripInfo ) => {
+
+			return getImage( tripInfo );
+
+		})
+		.then( ( tripInfo ) => {
+
+			insertTrip( tripInfo );
+
+			// TODO - Add trip to localStorage.
+			//saveTrip( index );
+
+		})
+		.catch( ( error ) => {
+
+			console.log( error );
+
+		});
 
 };
 
