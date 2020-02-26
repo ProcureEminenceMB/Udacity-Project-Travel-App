@@ -51,7 +51,8 @@ const insertTrip = ( tripInfo ) => {
 				</div>
 			</div>
 			<div class="tripNotesContainer">
-				Notes
+				Notes<br>
+				<textarea class="notes"></textarea>
 			</div>
 		</div>`;
 
@@ -212,6 +213,7 @@ const addTrip = ( event ) => {
 
 const addNotes = ( index ) => {
 
+	document.querySelectorAll( '.tripNotesContainer' )[index].style.display = 'block';
 
 };
 
