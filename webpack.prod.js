@@ -2,6 +2,7 @@ const path = require( 'path' );
 const webpack = require( 'webpack' );
 const HtmlWebPackPlugin = require( 'html-webpack-plugin' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+const WorkboxPlugin = require( 'workbox-webpack-plugin' );
 
 module.exports = {
 
@@ -32,7 +33,8 @@ module.exports = {
 			verbose: false, // Write logs to console. Default is false.
 			cleanStaleWebpackAssets: true, // Remove unused webpack assets on rebuild. Default is true.
 			protectWebpackAssets: false // Prevent removal of current webpack assets. Default is true.
-		})
+		}),
+		new WorkboxPlugin.GenerateSW()
 	],
 	output: {
 		libraryTarget: 'var',
