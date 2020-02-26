@@ -129,9 +129,33 @@ const getForecast = async ( tripInfo ) => {
 
 };
 
-const getImage = async () => {
+const getImage = async ( tripInfo ) => {
 
-	// 
+	const response = await fetch( '/image', {
+			method: 'POST',
+			credentials: 'same-origin',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify( {
+				'destination': tripInfo.destination,
+				'country': tripInfo.country
+			})
+		});
+
+	try{
+
+		const data = await response.json();
+
+		tripInfo.image = data.hits[0].webformatURL;
+
+		return tripInfo;
+
+	}catch( error ){
+
+		console.log( error );
+
+	}
 
 };
 
