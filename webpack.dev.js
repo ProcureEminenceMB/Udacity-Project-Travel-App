@@ -8,7 +8,7 @@ module.exports = {
 
 	entry: './src/client/index.js',
 	mode: 'development',
-	stats: 'verbose',
+	stats: 'normal',
 	module: {
 		rules: [
 			{
