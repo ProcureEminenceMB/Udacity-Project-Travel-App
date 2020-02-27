@@ -1,3 +1,5 @@
+import '@babel/polyfill'; // MUST BE IMPORTED FIRST! Fixes 'regeneratorRuntime not defined' error.
+
 /* Import JS functions */
 import { validDestination, validDate } from './js/inputValidation';
 import { calcNumDays, insertTrip, getGeoCoords, getForecast, getImage, addTrip, addNotes, saveTrip, updateTrip, loadTrips, removeTrip, init } from './js/travel-app';
