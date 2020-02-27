@@ -6,8 +6,6 @@ const request = supertest( app );
 it( 'Checks image url prefix', async done => {
 
 	const response = await request.get( '/image-url-test' );
-  
-	console.log( response.body );
 	let prefix = response.body.url.substr( 0, 24 );
 	expect( prefix ).toBe( 'https://pixabay.com/get/' );
 	done();
